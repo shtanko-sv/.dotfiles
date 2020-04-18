@@ -1,0 +1,6 @@
+[submodule "/home/shtanko_sv/.zsh/plugins/minimal"]
+	path = /home/shtanko_sv/.zsh/plugins/minimal
+	url = https://github.com/subnixr/minimal.git
+[submodule "/home/shtanko_sv/.zsh/plugins/zsh-z"]
+	path = /home/shtanko_sv/.zsh/plugins/zsh-z
+	url = https://github.com/agkozak/zsh-z.git
