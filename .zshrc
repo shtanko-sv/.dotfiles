@@ -10,7 +10,7 @@ setopt HIST_SAVE_NO_DUPS
 
 # Completion configuration
 autoload -Uz compinit
-compinit
+compinit -d $ZSH_DIR/compdump
 zstyle ':completion:*' menu select
 
 # Keys setup
