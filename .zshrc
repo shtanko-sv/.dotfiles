@@ -60,7 +60,12 @@ fi
 ZSHZ_DATA=$ZSH_DIR/z.data
 
 PLUGINS_DIR=$ZSH_DIR/plugins
-
-for plugin in $(ls $PLUGINS_DIR); do
+PLUGINS_LIST=$ZSH_DIR/plugins.list
+for plugin_url in $(cat $PLUGINS_LIST); do
+  plugin=${plugin_url##*/}
+  plugin=${plugin:r}
+  if [ ! -d $PLUGINS_DIR/$plugin ]; then
+    git clone $plugin_url $PLUGINS_DIR/$plugin
+  fi
   source $PLUGINS_DIR/$plugin/*.zsh
 done
