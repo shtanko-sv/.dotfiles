@@ -5,7 +5,7 @@ source $ZSH_DIR/aliases.sh
 # History configuration
 HISTFILE=$ZSH_DIR/history
 HISTSIZE=2000
-SAVEHIST=2000
+SAVEHIST=6000
 setopt HIST_SAVE_NO_DUPS
 
 # Completion configuration
