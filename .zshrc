@@ -44,7 +44,7 @@ key[Ctrl]="^"
 [[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
-[[ -n "${key[Ctrl]}R"     ]] && bindkey -- "${key[Ctrl]}R"     history-incremental-search-backward 
+[[ -n "${key[Ctrl]}R"     ]] && bindkey -- "${key[Ctrl]}R"     history-incremental-search-backward
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -59,6 +59,7 @@ fi
 # zsh-z configuration
 ZSHZ_DATA=$ZSH_DIR/z.data
 
+# plugins setup
 PLUGINS_DIR=$ZSH_DIR/plugins
 PLUGINS_LIST=$ZSH_DIR/plugins.list
 for plugin_url in $(cat $PLUGINS_LIST); do
@@ -66,8 +67,15 @@ for plugin_url in $(cat $PLUGINS_LIST); do
   plugin=${plugin:r}
   if [ ! -d $PLUGINS_DIR/$plugin -o -z "$(ls -A $PLUGINS_DIR/$plugin)" ]; then
     git clone $plugin_url $PLUGINS_DIR/$plugin
-  else
-    git --git-dir="$PLUGINS_DIR/$plugin/.git" pull --ff-only > /dev/null
   fi
   source $PLUGINS_DIR/$plugin/*.zsh
 done
+
+function update_zsh_plugins {
+  for plugin_url in $(cat $PLUGINS_LIST); do
+    plugin=${plugin_url##*/}
+    plugin=${plugin:r}
+    git --git-dir="$PLUGINS_DIR/$plugin/.git" pull --ff-only > /dev/null
+    source $PLUGINS_DIR/$plugin/*.zsh
+  done
+}
