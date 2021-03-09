@@ -11,8 +11,11 @@ source $ZINIT[HOME_DIR]/bin/zinit.zsh
 zinit load agkozak/zsh-z
 zinit load subnixr/minimal
 zinit load ael-code/zsh-colored-man-pages
-zinit load zsh-users/zsh-syntax-highlighting
-zinit load zsh-users/zsh-completions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+
+# zsh-z configuration
+ZSHZ_DATA=$ZDOTDIR/.z
 
 source $ZDOTDIR/aliases.sh
 
@@ -70,5 +73,3 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# zsh-z configuration
-ZSHZ_DATA=$ZDOTDIR/z.data
