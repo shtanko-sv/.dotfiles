@@ -1,16 +1,30 @@
-ZSH_DIR=$HOME/.zsh
+declare -A ZINIT
+ZINIT[HOME_DIR]=${ZDOTDIR:-$HOME}/.zinit
 
-source $ZSH_DIR/aliases.sh
+if [[ ! -d $ZINIT[HOME_DIR] ]]; then
+  git clone https://github.com/zdharma/zinit.git $ZINIT[HOME_DIR]/bin
+fi
+
+source $ZINIT[HOME_DIR]/bin/zinit.zsh
+
+#ZINIT plugins
+zinit load agkozak/zsh-z
+zinit load subnixr/minimal
+zinit load ael-code/zsh-colored-man-pages
+zinit load zsh-users/zsh-syntax-highlighting
+zinit load zsh-users/zsh-completions
+
+source $ZDOTDIR/aliases.sh
 
 # History configuration
-HISTFILE=$ZSH_DIR/history
+HISTFILE=$ZDOTDIR/history
 HISTSIZE=2000
 SAVEHIST=6000
 setopt HIST_SAVE_NO_DUPS
 
 # Completion configuration
 autoload -Uz compinit
-compinit -d $ZSH_DIR/compdump
+compinit -d $ZDOTDIR/compdump
 zstyle ':completion:*' menu select
 
 # Keys setup
@@ -57,25 +71,4 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 # zsh-z configuration
-ZSHZ_DATA=$ZSH_DIR/z.data
-
-# plugins setup
-PLUGINS_DIR=$ZSH_DIR/plugins
-PLUGINS_LIST=$ZSH_DIR/plugins.list
-for plugin_url in $(cat $PLUGINS_LIST); do
-  plugin=${plugin_url##*/}
-  plugin=${plugin:r}
-  if [ ! -d $PLUGINS_DIR/$plugin -o -z "$(ls -A $PLUGINS_DIR/$plugin)" ]; then
-    git clone $plugin_url $PLUGINS_DIR/$plugin
-  fi
-  source $PLUGINS_DIR/$plugin/*.zsh
-done
-
-function update_zsh_plugins {
-  for plugin_url in $(cat $PLUGINS_LIST); do
-    plugin=${plugin_url##*/}
-    plugin=${plugin:r}
-    git --git-dir="$PLUGINS_DIR/$plugin/.git" pull --ff-only > /dev/null
-    source $PLUGINS_DIR/$plugin/*.zsh
-  done
-}
+ZSHZ_DATA=$ZDOTDIR/z.data
