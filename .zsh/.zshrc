@@ -13,6 +13,7 @@ zinit load subnixr/minimal
 zinit load ael-code/zsh-colored-man-pages
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 
 # zsh-z configuration
 ZSHZ_DATA=$ZDOTDIR/.z
