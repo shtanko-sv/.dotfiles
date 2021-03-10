@@ -1,20 +1,3 @@
-declare -A ZINIT
-ZINIT[HOME_DIR]=${ZDOTDIR:-$HOME}/.zinit
-
-if [[ ! -d $ZINIT[HOME_DIR] ]]; then
-  git clone https://github.com/zdharma/zinit.git $ZINIT[HOME_DIR]/bin
-fi
-
-source $ZINIT[HOME_DIR]/bin/zinit.zsh
-
-#ZINIT plugins
-zinit load agkozak/zsh-z
-zinit load subnixr/minimal
-zinit load ael-code/zsh-colored-man-pages
-zinit load zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
 # zsh-z configuration
 ZSHZ_DATA=$ZDOTDIR/.z
 
@@ -73,4 +56,21 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
+
+declare -A ZINIT
+ZINIT[HOME_DIR]=${ZDOTDIR:-$HOME}/.zinit
+
+if [[ ! -d $ZINIT[HOME_DIR] ]]; then
+  git clone https://github.com/zdharma/zinit.git $ZINIT[HOME_DIR]/bin
+fi
+
+source $ZINIT[HOME_DIR]/bin/zinit.zsh
+
+zinit load agkozak/zsh-z
+zinit load subnixr/minimal
+zinit load ael-code/zsh-colored-man-pages
+zinit load zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
 
