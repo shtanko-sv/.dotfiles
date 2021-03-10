@@ -11,7 +11,7 @@ source $ZINIT[HOME_DIR]/bin/zinit.zsh
 zinit load agkozak/zsh-z
 zinit load subnixr/minimal
 zinit load ael-code/zsh-colored-man-pages
-zinit light zsh-users/zsh-syntax-highlighting
+zinit load zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
