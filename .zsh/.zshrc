@@ -30,6 +30,6 @@ zinit load jeffreytse/zsh-vi-mode
 zinit load agkozak/zsh-z
 zinit load subnixr/minimal
 zinit load ael-code/zsh-colored-man-pages
-zinit load zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit load zdharma/fast-syntax-highlighting
