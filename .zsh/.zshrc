@@ -33,3 +33,7 @@ zinit load ael-code/zsh-colored-man-pages
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit load zdharma/fast-syntax-highlighting
+
+if [[ -f ${ZDOTDIR:-$HOME}/exports.sh ]]; then
+  source ${ZDOTDIR:-$HOME}/exports.sh
+fi
